@@ -11,7 +11,7 @@
     | 3 | [How to create RazorPage project](#how-to-create-razorpage-project) |
 
 ***
-#### Before Create or Run a RazorPage project
+#### Before Create or Run a RazorPage project        | [Menu](#simple-razorpage-project) |
 
 1. Install .Net 5.0 sdk first. For this project, we use .Net 5.0. Below is the link for you to download .Net 5.0 :
 
