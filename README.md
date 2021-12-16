@@ -99,7 +99,7 @@
 3. Open your SSMS and create a new DB. ([How to use SSMS](https://docs.microsoft.com/en-us/sql/ssms/quickstarts/ssms-connect-query-sql-server?view=sql-server-ver15))
    > ![image](https://user-images.githubusercontent.com/47632993/146315651-d7d8889c-9e2a-4773-bbc7-33c091e8141a.png)
 
-5. After you have finished create your DB, create table that consists of 5 field such as below and do't forget to ==set ID as a Primary Key and as an Identity Column== :
+5. After you have finished create your DB, create table that consists of 5 field such as below and do't forget to <mark>set ID as a Primary Key and as an Identity Column</mark> :
    > ![image](https://user-images.githubusercontent.com/47632993/146315974-c32f54c8-2618-4fcd-9289-642794923642.png)
 
 6. 
