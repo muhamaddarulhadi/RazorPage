@@ -10,7 +10,8 @@
     | 2 | [How to run RazorPage project](#how-to-run-razorpage-project) |
     | 3 | [How to create RazorPage project](#how-to-create-razorpage-project) |
     | 4 | [Create Database](#create-database) |
-    | 5 | [Start Code](#start-code) |
+    | 5 | [Setup DB connection on project](#setup-db-connection-on-project) |  
+    | 6 | [Start Code](#start-code) |
 
 ***
 #### Before Create or Run a RazorPage project
@@ -102,17 +103,111 @@
 5. After you have finished create your DB, create table that consists of 5 field such as below and do't forget to <mark>set ID as a Primary Key and as an Identity Column</mark> :
    > ![image](https://user-images.githubusercontent.com/47632993/146315974-c32f54c8-2618-4fcd-9289-642794923642.png)
 
-6. 
+6. You will get your result like this after you finished create your DB
 
-12. [Back to Menu](#simple-razorpage-project)
+   > ![image](https://user-images.githubusercontent.com/47632993/146318517-e4625ddf-18c9-417b-bd4b-5e239f46109d.png)
+
+7. [Back to Menu](#simple-razorpage-project)
 
 
 ***
-#### Start Code
+#### Setup DB connection on project
+
+1. On your project, open appsettings.json file and insert this :
+
+    ```        
+    "ConnectionStrings": {
+        "DefaultConnection": "Server=YOUR SERVER NAME; Database=YOUR DB NAME; Trusted_Connection=True; MultipleActiveResultSets=True;"
+      }
+    ```    
+    
+   > ![image](https://user-images.githubusercontent.com/47632993/146317175-83c4535e-9228-401d-9fcc-46416b9cc2f9.png)
+
+2. Save the file.
+3. Create a folder name Data and create a new file call DefaultConnection.cs 
+   
+   > ![image](https://user-images.githubusercontent.com/47632993/146318102-36c6b4ff-1029-4ebf-b1ea-3be40f7acfe5.png)
+
+4. Open DefaultConnection.cs and insert this code :
+    
+    ```
+    using Microsoft.EntityFrameworkCore;
+    using RazorPage.Models;
+
+    namespace RazorPage.Data
+    {
+        public class DefaultConnection : DbContext
+        {
+            public DefaultConnection (
+                DbContextOptions<DefaultConnection> options)
+                : base(options)
+            {
+            }
+
+            public DbSet<Table_Razor_Page> Table_Razor_Page { get; set; }
+
+            protected override void OnModelCreating(ModelBuilder modelBuilder)
+            {
+                modelBuilder.Entity<Table_Razor_Page>().ToTable("Table_Razor_Page");
+            }
+        }
+    }
+    ```
+    
+5. If you see error with red lines, don't worry, it is just because we didn't finish create some file that will be use by DefaultConnection.cs
+6. Create a new folder name Models and create a new file inside it call Table_Razor_Page.cs .This is an Entity Class that we wil use on our project.
+    
+   > ![image](https://user-images.githubusercontent.com/47632993/146319343-044045bf-e757-455c-8ebc-a6a9b0a6ef89.png)
+
+7. Open Table_Razor_Page.cs and insert this code and you will see the error on DefaultConnection.cs will be gone :
+
+    ```
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    namespace RazorPage.Models
+    {
+        public class Table_Razor_Page
+        {
+            [Key]
+            public int ID { get; set; }
+
+            [Required(ErrorMessage = "Please insert Name")]
+            public string Name { get; set; }
+
+            [Required(ErrorMessage = "Please insert Date of Birth")]
+            [DataType(DataType.Date)]
+            public DateTime dateOfBirth { get; set; }
+
+            public DateTime dateTimeInsert { get; set; }
+
+            public DateTime dateTimeUpdate { get; set; }
+        }
+    }
+    ```
+
+8. After that, open Startup.cs and insert this code above namespace
+
+       using Microsoft.EntityFrameworkCore;
+       using RazorPage.Data;
+        
+      > ![image](https://user-images.githubusercontent.com/47632993/146323512-5e45b7ff-b42c-40f5-8726-24490c6d7b60.png)
+
+9. Then, insert this code as follows :
+        
+       services.AddDbContext<DefaultConnection>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+      
+      > ![image](https://user-images.githubusercontent.com/47632993/146323705-8f9a2349-c67e-4cda-bd2d-9b3543aba284.png)
+
+10. [Back to Menu](#simple-razorpage-project)
+
+
+***
+#### Start Code [CRUD](https://www.sumologic.com/glossary/crud/#:~:text=CRUD%20Meaning%3A%20CRUD%20is%20an,%2C%20read%2C%20update%20and%20delete.) process
 
 1. 
 
 12. [Back to Menu](#simple-razorpage-project)
-
 
 
