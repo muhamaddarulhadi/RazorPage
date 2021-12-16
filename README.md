@@ -9,7 +9,8 @@
     | 1 | [Before Create or Run a RazorPage project](#before-create-or-run-a-razorpage-project) |
     | 2 | [How to run RazorPage project](#how-to-run-razorpage-project) |
     | 3 | [How to create RazorPage project](#how-to-create-razorpage-project) |
-    | 4 | [Start Code](#start-code) |
+    | 4 | [Create Database](#create-database) |
+    | 5 | [Start Code](#start-code) |
 
 ***
 #### Before Create or Run a RazorPage project
@@ -91,9 +92,17 @@
 
 
 ***
-#### Create database
+#### Create Database
 
-1. 
+1. Before we start to code, you need to create a database (DB).
+2. You just need to create DB using SSMS that we install earlier.
+3. Open your SSMS and create a new DB. ([How to use SSMS](https://docs.microsoft.com/en-us/sql/ssms/quickstarts/ssms-connect-query-sql-server?view=sql-server-ver15))
+   > ![image](https://user-images.githubusercontent.com/47632993/146315651-d7d8889c-9e2a-4773-bbc7-33c091e8141a.png)
+
+5. After you have finished create your DB, create table that consists of 5 field such as below and do't forget to ==set ID as a Primary Key and as an Identity Column== :
+   > ![image](https://user-images.githubusercontent.com/47632993/146315974-c32f54c8-2618-4fcd-9289-642794923642.png)
+
+6. 
 
 12. [Back to Menu](#simple-razorpage-project)
 
