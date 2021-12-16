@@ -11,7 +11,7 @@
     | 3 | [How to create RazorPage project](#how-to-create-razorpage-project) |
     | 4 | [Create Database](#create-database) |
     | 5 | [Setup DB connection on project](#setup-db-connection-on-project) |  
-    | 6 | [Start Code](#start-code) |
+    | 6 | [Start Code CRUD process](#start-code-crud-process) |
 
 ***
 #### Before Create or Run a RazorPage project
