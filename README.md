@@ -6,12 +6,13 @@
 
     | No. | Title |
     | ----------- | ----------- |
-    | 1 | [Before Create or Run a RazorPage project](#before-create-or-run-a-razorpage-project) |
-    | 2 | [How to run RazorPage project](#how-to-run-razorpage-project) |
-    | 3 | [How to create RazorPage project](#how-to-create-razorpage-project) |
+    | 1 | [A. Before Create or Run a RazorPage project](#a.-before-create-or-run-a-razorpage-project) |
+    | 2 | [B. How to run RazorPage project](#b.-how-to-run-razorpage-project) |
+    | 3 | [C. How to create RazorPage project](#c.-how-to-create-razorpage-project) |
+    | 4 | [D. Start Code](#d.start-code) |
 
 ***
-#### Before Create or Run a RazorPage project        | [Menu](#simple-razorpage-project)
+#### A. Before Create or Run a RazorPage project        | [Menu](#simple-razorpage-project)
 
 1. Install .Net 5.0 sdk first. For this project, we use .Net 5.0. Below is the link for you to download .Net 5.0 :
 
@@ -41,10 +42,10 @@
 5. After you finish setup everything. Now you are ready to proceed to create your first RazorPge project or run this project :grin:
 
 ***
-#### How to run RazorPage project        | [Menu](#simple-razorpage-project)
+#### B. How to run RazorPage project        | [Menu](#simple-razorpage-project)
 
 ***
-#### How to create RazorPage project        | [Menu](#simple-razorpage-project)
+#### C. How to create RazorPage project        | [Menu](#simple-razorpage-project)
 
 1. Open your install VS Code and open VS Code terminal or any terminal that you have.
 2. Change to the directory (cd) which will contain the project.
@@ -81,7 +82,9 @@
     
     > ![image](https://user-images.githubusercontent.com/47632993/146312151-8864070a-1417-4e22-ad4d-0a66fcd505b2.png)
 
-12. 
+
+***
+#### D. Start Code        | [Menu](#simple-razorpage-project)
         
 
 
