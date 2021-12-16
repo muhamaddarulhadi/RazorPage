@@ -209,18 +209,23 @@
 1. Before we start to code, we need to download library called [Datatable](https://datatables.net/download/). Just use default setting when download Datatable.
 2. Insert the Datatable library inside folder lib on wwwroot folder.
     
-    > ![image](https://user-images.githubusercontent.com/47632993/146326313-16cf22ae-f056-4687-8d68-c163dc3c8ed1.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146326313-16cf22ae-f056-4687-8d68-c163dc3c8ed1.png)
 
-3. After that insert this code 
+3. Insert file datatable.js inside folder js on wwwroot
+    
+   >![image](https://user-images.githubusercontent.com/47632993/146327507-22771f2d-4f9f-493f-a7bb-aae6aa6889f6.png)
+
+5. After that insert this code 
     
        <link rel="stylesheet" type="text/css" href="~/lib/DataTables/datatables.min.css"/>
        
    inside _Layout.cshtml on
    
    > ![image](https://user-images.githubusercontent.com/47632993/146326780-1329954c-bae1-4b38-81ca-816f3ac477cc.png)
+   
    > ![image](https://user-images.githubusercontent.com/47632993/146326825-cba80e52-b40f-4e92-9b50-018b19e011d9.png)
 
-4. Then, we need to insert this code
+5. Then, we need to insert this code
     
         <script src="~/lib/DataTables/datatables.min.js"></script>
         <script src="~/js/datatable.js"></script>
@@ -229,7 +234,7 @@
     
     >![image](https://user-images.githubusercontent.com/47632993/146327033-d89ce751-0345-43c8-92b6-23706f9388d8.png)
 
-5. 
+6. 
     
 12. [Back to Menu](#simple-razorpage-project)
 
