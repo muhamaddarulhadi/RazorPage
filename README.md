@@ -6,9 +6,9 @@
 
     | No. | Title |
     | ----------- | ----------- |
-    | 1 | [A Before Create or Run a RazorPage project](#a-before-create-or-run-a-razorpage-project) |
-    | 2 | [B How to run RazorPage project](#b-how-to-run-razorpage-project) |
-    | 3 | [C How to create RazorPage project](#c-how-to-create-razorpage-project) |
+    | 1 | [A. Before Create or Run a RazorPage project](#a.-before-create-or-run-a-razorpage-project) |
+    | 2 | [B. How to run RazorPage project](#b.-how-to-run-razorpage-project) |
+    | 3 | [C. How to create RazorPage project](#c.-how-to-create-razorpage-project) |
     | 4 | [D. Start Code](#d.-start-code) |
 
 ***
