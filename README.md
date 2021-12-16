@@ -40,13 +40,13 @@
 
     
 5. After you finish setup everything. Now you are ready to proceed to create your first RazorPge project or run this project :grin:
-6. [Back to Menu](#back-to-menu)
+6. [Back to Menu](#simple-razorpage-project)
 
 
 ***
 #### How to run RazorPage project
 
-1. [Back to Menu](#back-to-menu)
+1. [Back to Menu](#simple-razorpage-project)
 
 
 ***
@@ -87,12 +87,13 @@
     
     > ![image](https://user-images.githubusercontent.com/47632993/146312151-8864070a-1417-4e22-ad4d-0a66fcd505b2.png)
 
-12. [Back to Menu](#back-to-menu)
+12. [Back to Menu](#simple-razorpage-project)
 
 
 ***
 #### Start Code
-        
+
+12. [Back to Menu](#simple-razorpage-project)
 
 
 
