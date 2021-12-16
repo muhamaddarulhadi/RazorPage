@@ -12,7 +12,7 @@
     | 4 | [Start Code](#start-code) |
 
 ***
-#### Before Create or Run a RazorPage project       | [Menu](#simple-razorpage-project)
+#### Before Create or Run a RazorPage project
 
 1. Install .Net 5.0 sdk first. For this project, we use .Net 5.0. Below is the link for you to download .Net 5.0 :
 
