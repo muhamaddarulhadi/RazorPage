@@ -91,7 +91,17 @@
 
 
 ***
+#### Create database
+
+1. 
+
+12. [Back to Menu](#simple-razorpage-project)
+
+
+***
 #### Start Code
+
+1. 
 
 12. [Back to Menu](#simple-razorpage-project)
 
