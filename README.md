@@ -490,6 +490,11 @@
     }
 
     ```
-5. Run the web application and try insert data. When you finish insert data, you will see the data that you insert on page Index.cshtml.
+5. Run the web application and try insert data and click save. When you finish insert data, you will see the data that you insert on page Index.cshtml.
+    
+    > ![image](https://user-images.githubusercontent.com/47632993/146668135-fb7ea215-4f42-49f6-87cf-96c0f8521c8d.png)
+    
+    > ![image](https://user-images.githubusercontent.com/47632993/146668163-b9bb84c2-9065-449d-a1f3-c3d502fed101.png)
+  
 
 7. [Back to Menu](#simple-razorpage-project)
