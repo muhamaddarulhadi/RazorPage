@@ -3,6 +3,7 @@
 * This project is just a simple RazorPage web application that consist of CRUD process.
 * [What is RazorPage?](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio)
 * What is [Entity](https://www.entityframeworktutorial.net/what-is-entityframework.aspx) ?
+* To run RazorPage on VS Code, click FN + F5 or just F5 on your keyboard. It is depends on your keyboard.
 
 
     | No. | Title |
@@ -50,7 +51,19 @@
 ***
 #### How to run RazorPage project
 
-1. [Back to Menu](#simple-razorpage-project)
+1. Download this project and open your terminal or VS Code.
+2. On your terminal type this command, but first you need to make sure you know where your project folder is. For my case, I put it on my desktop
+   
+   > ![image](https://user-images.githubusercontent.com/47632993/146669240-5ab06988-7c10-418e-ae53-f9d7d5765114.png)
+    
+   ``` 
+   code -r RazorPage
+   ``` 
+   > ![image](https://user-images.githubusercontent.com/47632993/146669328-8036b74d-8c4f-4d94-a030-f4541527451f.png)
+
+3. System will open the project on your Code Editor
+4. Other than that, by using VS Code, you can just drag project folder on VS Code and and trust the author.         
+5. [Back to Menu](#simple-razorpage-project)
 
 
 ***
@@ -119,7 +132,7 @@
 
     ```        
     "ConnectionStrings": {
-        "DefaultConnection": "Server=YOUR SERVER NAME; Database=YOUR DB NAME; Trusted_Connection=True; MultipleActiveResultSets=True;"
+        "DefaultConnection": "Server=YOUR_SERVER_NAME; Database=YOUR_DB_NAME; Trusted_Connection=True; MultipleActiveResultSets=True;"
       }
     ```    
     
@@ -654,4 +667,27 @@
 
 #### Delete
 
-1. 
+1. For this process we gonna edit the code inside Index.cshtml.cs. It is because we already include the code on Index.cshtml such as below :
+
+    > ![image](https://user-images.githubusercontent.com/47632993/146669030-9632709d-1ade-4616-960b-89b887da31a7.png)
+
+2. Open Index.cshtml.cs and paste this code below OnGet method.
+    
+    >![image](https://user-images.githubusercontent.com/47632993/146669052-7ccb0b0c-0837-4b78-853a-4defdbb78dd2.png)
+
+    ```
+    public async Task<ActionResult> OnPostDelete(int id)
+    {
+        delete = await _context.Table_Razor_Page.FirstOrDefaultAsync(x=>x.ID==id);
+        _context.Table_Razor_Page.Remove(delete);
+
+        await _context.SaveChangesAsync();
+
+        return RedirectToPage();
+    }
+    ```
+3. Run your application and try delete the data that you already insert before by clicking the delete button on the table.
+    
+    > ![image](https://user-images.githubusercontent.com/47632993/146669091-fb907269-437b-4076-a91b-049e3ef17009.png)
+
+4. As you can see the data that you delete already gone.
