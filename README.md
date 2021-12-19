@@ -13,8 +13,7 @@
     | 4 | [Create Database](#create-database) |
     | 5 | [Setup DB connection on project](#setup-db-connection-on-project) |  
     | 6 | [Insert Library](#insert-library) |
-    | 7 | [Start Code CRUD process](#start-code-crud-process) |
-    | | [View](#view) </br> [Insert](#insert) </br> [Update](#update) </br> [Delete](#delete) |
+    | 7 | [CRUD code](#crud-code) </br> - [View](#view) </br> - [Insert](#insert) </br> - [Update](#update) </br> - [Delete](#delete) |
 
 ***
 #### Before Create or Run a RazorPage project
@@ -244,8 +243,8 @@
 
 
 ***
-### Start Code [CRUD](https://www.sumologic.com/glossary/crud/#:~:text=CRUD%20Meaning%3A%20CRUD%20is%20an,%2C%20read%2C%20update%20and%20delete.) process
-***
+### [CRUD](https://www.sumologic.com/glossary/crud/#:~:text=CRUD%20Meaning%3A%20CRUD%20is%20an,%2C%20read%2C%20update%20and%20delete.) Code
+
 
 #### View
 
@@ -264,7 +263,7 @@
         <p>This Project consist of Create, Read, Update and Delete process.</p>
 
         <div class="text-left mt-5 mb-3">
-            <a asp-page="/Privacy" class="btn btn-primary">Insert</a>
+            <a asp-page="/Manage" class="btn btn-primary">Insert</a>
         </div>
         <div>
             <table class="display table table-striped table-bordered table-sm table-condensed">
@@ -329,7 +328,6 @@
                 }
 
                 public IList<Table_Razor_Page> view { get; set;}
-                public Table_Razor_Page delete { get; set;}
 
                 public async Task<ActionResult> OnGet()
                 {
@@ -342,20 +340,6 @@
 
                     return Page();
                 }
-
-                public ActionResult OnPostEdit(int id)
-                {
-                    return RedirectToPage("/Manage",new {id = id} );
-                }
-
-                public async Task<ActionResult> OnPostDelete(int id)
-                {
-                    delete = await _context.Table_Razor_Page.FirstOrDefaultAsync(x=>x.ID==id);
-                    _context.Table_Razor_Page.Remove(delete);
-                    await _context.SaveChangesAsync();
-
-                    return RedirectToPage();
-                }
             }
         }
 
@@ -365,3 +349,11 @@
 4. You can see that all the errors gone. You can try run the web application first to see whether there is error or not. Click FN + F5 on your keyboard or just F5, depends on your keyboard.
 
 6. You can see that there are no rows on the table because we still didn't insert the data; table inside database is still empty.
+
+7. [Back to Menu](#simple-razorpage-project)
+
+
+#### Insert
+
+
+7. [Back to Menu](#simple-razorpage-project)
