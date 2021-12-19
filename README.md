@@ -296,7 +296,6 @@
     </div>
 
     @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
         <script src="~/js/datatable.js"></script>
     }
      ```
@@ -354,7 +353,7 @@
     }
     ```
 
-4. You can see that all the errors gone.
+4. You can see that all the errors are gone.
 5. After that, create one file inside js folder and name it datatable.js
 
     > ![image](https://user-images.githubusercontent.com/47632993/146667756-5c02709e-e6fe-4819-a61b-ad2b3a576866.png)
@@ -389,8 +388,10 @@
 7. You can try run the web application first to see whether there is error or not. Click FN + F5 on your keyboard or just F5, depends on your keyboard.
 
 6. You can see that there are no rows on the table because we still didn't insert the data; table inside database is still empty.
+    
+    > ![image](https://user-images.githubusercontent.com/47632993/146668100-a4aefe6b-cbad-497a-92f3-b211497d2e14.png)
 
-7. [Back to Menu](#simple-razorpage-project)
+8. [Back to Menu](#simple-razorpage-project)
 
 
 #### Insert
@@ -401,8 +402,94 @@
 
 3. Open Manage.cshtml and paste this code inside it :
 
-     ```
-     ```
+    ```
+    @page
+    @model ManageModel
+    @{
+        ViewData["Title"] = "Manage";
+    }
 
+    <div class="text-center col-md-12">
+        <div mt-4> 
+            <h1 class="display-4">
+                 Insert Data
+            </h1>
+        </div>
+        <div>
+            <form method="post">
+                <div class="row">
+                    <label asp-for="manage.Name" class="col-form-label">Name</label>
+                    <input asp-for="manage.Name" class="form-control"/>
+                    <span asp-validation-for="manage.Name" class="text-danger"></span>
+                </div>
+                <div class="row mt-3">
+                    <label asp-for="manage.dateOfBirth" class="col-form-label">Birth Date</label>
+                    <input asp-for="manage.dateOfBirth" class="form-control" type="date" value="@DateTime.Now.ToShortDateString()"/>
+                    <span asp-validation-for="manage.dateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="row mt-3 ">
+                    <a asp-page="/Index" class="btn btn-primary mr-3">Back</a>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+    ```
+
+4. Then, open Manage.cshtml.cs and paste this code :
+    
+    ```
+    using System;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+
+    using Microsoft.EntityFrameworkCore;
+    using RazorPage.Data;
+    using RazorPage.Models;
+
+    namespace RazorPage.Pages
+    {
+        public class ManageModel : PageModel
+        {
+            private readonly DefaultConnection _context;
+            DateTime now = DateTime.Now;
+
+            public ManageModel(DefaultConnection context)
+            {
+               _context = context;
+            }
+
+            [BindProperty]
+            public Table_Razor_Page manage { get; set;}
+
+            public ActionResult OnGet()
+            {
+                manage = new Table_Razor_Page();
+
+                return Page();
+            }
+
+            public async Task<ActionResult> OnPost()
+            {
+                manage.dateTimeInsert = now;
+                manage.dateTimeUpdate = now;
+
+                await _context.Table_Razor_Page.AddAsync(manage);
+                await _context.SaveChangesAsync();
+
+                return RedirectToPage("Index");
+            }
+        }
+    }
+
+    ```
+5. Run the web application and try insert data. When you finish insert data, you will see the data that you insert on page Index.cshtml.
 
 7. [Back to Menu](#simple-razorpage-project)
