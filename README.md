@@ -671,7 +671,15 @@
 
     > ![image](https://user-images.githubusercontent.com/47632993/146669030-9632709d-1ade-4616-960b-89b887da31a7.png)
 
-2. Open Index.cshtml.cs and paste this code below OnGet method.
+2. Open Index.cshtml.cs and paste this code :
+
+    > ![image](https://user-images.githubusercontent.com/47632993/146669524-066253da-d718-4eda-9495-7c74d1e3d4ac.png)
+    
+    ```
+    public Table_Razor_Page delete { get; set;}
+    ```
+
+3. Paste this code below OnGet method.
     
     >![image](https://user-images.githubusercontent.com/47632993/146669052-7ccb0b0c-0837-4b78-853a-4defdbb78dd2.png)
 
@@ -686,9 +694,9 @@
         return RedirectToPage();
     }
     ```
-3. Run your application and try delete the data that you already insert before by clicking the delete button on the table.
+4. Run your application and try delete the data that you already insert before by clicking the delete button on the table.
     
     > ![image](https://user-images.githubusercontent.com/47632993/146669091-fb907269-437b-4076-a91b-049e3ef17009.png)
 
-4. As you can see the data that you delete already gone.
-5. [Back to Menu](#simple-razorpage-project)
+5. As you can see the data that you delete already gone.
+6. [Back to Menu](#simple-razorpage-project)
