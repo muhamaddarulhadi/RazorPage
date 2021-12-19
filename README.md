@@ -54,7 +54,7 @@
 1. Download this project and open your terminal or VS Code.
 2. On your terminal type this command, but first you need to make sure you know where your project folder is. For my case, I put it on my desktop
    
-   > ![image](https://user-images.githubusercontent.com/47632993/146669240-5ab06988-7c10-418e-ae53-f9d7d5765114.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146669384-e9b4b021-077d-4de5-acc3-e8aced9863b2.png)
     
    ``` 
    code -r RazorPage
@@ -691,3 +691,4 @@
     > ![image](https://user-images.githubusercontent.com/47632993/146669091-fb907269-437b-4076-a91b-049e3ef17009.png)
 
 4. As you can see the data that you delete already gone.
+5. 5. [Back to Menu](#simple-razorpage-project)
