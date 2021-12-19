@@ -249,7 +249,7 @@
 #### View
 
 1. For this project, we gonna use page Index to show one table that consist all data from database table that we have created.
-2. Open file Index.cshtml and paste this code :
+2. Open file Index.cshtml and paste this code (remove old code first) :
     
      ```
     @page "{handler?}/{id?}"
@@ -258,36 +258,34 @@
         ViewData["Title"] = "Home page";
     }
 
-    <div class="text-center">
+    <div class="text-center col-md-12">
         <h1 class="display-3 mt-3">Simple Razorpage Project</h1>
         <p>This Project consist of Create, Read, Update and Delete process.</p>
 
-        <div class="text-left mt-5 mb-3">
-            <a asp-page="/Manage" class="btn btn-primary">Insert</a>
+        <div class="text-left mt-5 mb-4">
+            <a asp-page="Manage" asp-page-handler="Insert" class="btn btn-primary">Insert</a>
         </div>
         <div>
-            <table class="display table table-striped table-bordered table-sm table-condensed">
+            <table id="data" class="display table table-striped table-bordered table-sm table-condensed">
                 <thead>
                     <tr>
                         <th class="text-center col-md-2">NO</th>
                         <th class="text-left col-md-5">NAME</th>
-                        <th class="text-center col-md-3">DATE OF BIRTH</th>
-                        <th class="text-center col-md-2" colspan="2">ACTION</th>
+                        <th class="text-center col-md-3">BIRTH DATE</th>
+                        <th class="text-center col-md-2">ACTION</th>
                     </tr>
                 </thead>
                 <tbody>
                     @for(int i=0; i<Model.view.Count(); i++)
                     {
                         <tr>
-                            <td class="text-center">@i++</td>
+                            <td class="text-center"></td>
                             <td class="text-left">@Model.view[i].Name</td>
-                            <td class="text-center">@Model.view[i].dateOfBirth</td>
+                            <td class="text-center">@Model.view[i].dateOfBirth.ToShortDateString()</td>
                             <form id="person" method="post">
                                 <td class="text-center">
-                                    <button class="btn btn-link" asp-page-handler="Update" asp-route-id="@Model.view[i].ID" type="submit"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                                </td>
-                                <td class="text-center">
-                                    <button class="btn btn-link" asp-page-handler="Delete" asp-route-id="@Model.view[i].ID" type="submit"><i class="fa fa-delete" aria-hidden="true"></i></button>
+                                    <a class="btn btn-link" asp-page="Manage" asp-page-handler="Update" asp-route-id="@Model.view[i].ID"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                    <button class="btn btn-link text-danger" asp-page-handler="Delete" asp-route-id="@Model.view[i].ID" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </td>
                             </form>
                         </tr>
@@ -296,57 +294,99 @@
             </table>
         </div>
     </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script src="~/js/datatable.js"></script>
+    }
      ```
 
 
 
 3. If you got an error, it is because we still didn't edit the code on controller. Open Index.cshtml.cs and paste this code :
     
-     ```
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Threading.Tasks;
-        using Microsoft.AspNetCore.Mvc;
-        using Microsoft.AspNetCore.Mvc.RazorPages;
-        using Microsoft.Extensions.Logging;
+    ```
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
 
-        using Microsoft.EntityFrameworkCore;
-        using RazorPage.Data;
-        using RazorPage.Models;
+    using Microsoft.EntityFrameworkCore;
+    using RazorPage.Data;
+    using RazorPage.Models;
 
-
-        namespace RazorPage.Pages
+    namespace RazorPage.Pages
+    {
+        public class IndexModel : PageModel
         {
-            public class IndexModel : PageModel
+            private readonly DefaultConnection _context;
+
+            public IndexModel(DefaultConnection context)
             {
-                private readonly DefaultConnection _context;
+               _context = context;
+            }
 
-                public IndexModel(DefaultConnection context)
+            public IList<Table_Razor_Page> view { get; set;}
+            public Table_Razor_Page delete { get; set;}
+
+            public async Task<ActionResult> OnGet()
+            {
+                view = await _context.Table_Razor_Page.ToListAsync();
+
+                if(view==null) 
                 {
-                   _context = context;
+                    view = new List<Table_Razor_Page>();
                 }
 
-                public IList<Table_Razor_Page> view { get; set;}
+                return Page();
+            }
 
-                public async Task<ActionResult> OnGet()
-                {
-                    view = await _context.Table_Razor_Page.ToListAsync();
+            public async Task<ActionResult> OnPostDelete(int id)
+            {
+                delete = await _context.Table_Razor_Page.FirstOrDefaultAsync(x=>x.ID==id);
+                _context.Table_Razor_Page.Remove(delete);
 
-                    if(view==null) 
-                    {
-                        view = new List<Table_Razor_Page>();
-                    }
+                await _context.SaveChangesAsync();
 
-                    return Page();
-                }
+                return RedirectToPage();
             }
         }
+    }
+    ```
 
-     ```
+4. You can see that all the errors gone.
+5. After that, create one file inside js folder and name it datatable.js
+
+    > ![image](https://user-images.githubusercontent.com/47632993/146667756-5c02709e-e6fe-4819-a61b-ad2b3a576866.png)
+
+6. Copy and paste this code inside datatable.js
     
+    ```
+    $(document).ready(function()
+    {
+        var t = $('#data').DataTable({
+            pageLength: 5,
+            "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "SEMUA"]],
+            "order": [[ 1, 'asc' ]],
+            "columnDefs": [ 
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [0],
+            },
+        ],
+        });
 
-4. You can see that all the errors gone. You can try run the web application first to see whether there is error or not. Click FN + F5 on your keyboard or just F5, depends on your keyboard.
+
+        t.on( 'order.dt search.dt', function () {
+            t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            } );
+        }).draw(); 
+    });
+    ```
+
+7. You can try run the web application first to see whether there is error or not. Click FN + F5 on your keyboard or just F5, depends on your keyboard.
 
 6. You can see that there are no rows on the table because we still didn't insert the data; table inside database is still empty.
 
