@@ -2,6 +2,7 @@
 
 * This project is just a simple RazorPage web application that consist of CRUD process.
 * [What is RazorPage?](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio)
+* What is [Entity](https://www.entityframeworktutorial.net/what-is-entityframework.aspx) ?
 
 
     | No. | Title |
@@ -11,7 +12,9 @@
     | 3 | [How to create RazorPage project](#how-to-create-razorpage-project) |
     | 4 | [Create Database](#create-database) |
     | 5 | [Setup DB connection on project](#setup-db-connection-on-project) |  
-    | 6 | [Start Code CRUD process](#start-code-crud-process) |
+    | 6 | [Insert Library](#insert-library) |
+    | 7 | [Start Code CRUD process](#start-code-crud-process) |
+    | | [View](#view) </br> [Insert](#insert) </br> [Update](#update) </br> [Delete](#delete) |
 
 ***
 #### Before Create or Run a RazorPage project
@@ -204,38 +207,161 @@
 
 
 ***
-#### Start Code [CRUD](https://www.sumologic.com/glossary/crud/#:~:text=CRUD%20Meaning%3A%20CRUD%20is%20an,%2C%20read%2C%20update%20and%20delete.) process
+#### Insert Library
 
-1. Before we start to code, we need to download library called [Datatable](https://datatables.net/download/). Just use default setting when download Datatable.
-2. Insert the Datatable library inside folder lib on wwwroot folder.
-    
-   > ![image](https://user-images.githubusercontent.com/47632993/146326313-16cf22ae-f056-4687-8d68-c163dc3c8ed1.png)
 
-3. Insert file datatable.js inside folder js on wwwroot
-    
-   >![image](https://user-images.githubusercontent.com/47632993/146327507-22771f2d-4f9f-493f-a7bb-aae6aa6889f6.png)
+1. Before we start to code, we need to download library called [Datatable](https://datatables.net/download/), just use default setting when download Datatable. Other than that, we need to download library called [FontAwesome](https://fontawesome.com/v4.7/get-started/).
 
-5. After that insert this code 
+    > What is [Datatable](https://datatables.net/)?
+
+    > What is [FontAwesome](https://fontawesome.com/v4.7/)?
+
+2. Insert the Datatable library and FontAwesome inside folder lib on wwwroot folder.
+   > ![image](https://user-images.githubusercontent.com/47632993/146663424-e2b4257e-0943-4ee4-8d0d-0519adc045d1.png)
+
+3. After that insert this code 
     
        <link rel="stylesheet" type="text/css" href="~/lib/DataTables/datatables.min.css"/>
+       <link rel="stylesheet" type="text/css" href="~/lib/font-awesome-4.7.0/css/font-awesome.min.css" />    
        
    inside _Layout.cshtml on
    
    > ![image](https://user-images.githubusercontent.com/47632993/146326780-1329954c-bae1-4b38-81ca-816f3ac477cc.png)
    
-   > ![image](https://user-images.githubusercontent.com/47632993/146326825-cba80e52-b40f-4e92-9b50-018b19e011d9.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146663387-86f2a3c5-4f82-4e3b-96b1-0f52eddd9dde.png)
 
-5. Then, we need to insert this code
+
+4. Then, we need to insert this code
     
         <script src="~/lib/DataTables/datatables.min.js"></script>
-        <script src="~/js/datatable.js"></script>
 
     inside  _Layout.cshtml on
     
-    >![image](https://user-images.githubusercontent.com/47632993/146327033-d89ce751-0345-43c8-92b6-23706f9388d8.png)
+    > ![image](https://user-images.githubusercontent.com/47632993/146662388-b66cc6a4-0757-45d4-90c1-efd33cd24029.png)
 
-6. 
+5. [Back to Menu](#simple-razorpage-project)
+
+
+
+***
+### Start Code [CRUD](https://www.sumologic.com/glossary/crud/#:~:text=CRUD%20Meaning%3A%20CRUD%20is%20an,%2C%20read%2C%20update%20and%20delete.) process
+***
+
+#### View
+
+1. For this project, we gonna use page Index to show one table that consist all data from database table that we have created.
+2. Open file Index.cshtml and paste this code :
     
-12. [Back to Menu](#simple-razorpage-project)
+     ```
+    @page "{handler?}/{id?}"
+    @model IndexModel
+    @{
+        ViewData["Title"] = "Home page";
+    }
+
+    <div class="text-center">
+        <h1 class="display-3 mt-3">Simple Razorpage Project</h1>
+        <p>This Project consist of Create, Read, Update and Delete process.</p>
+
+        <div class="text-left mt-5 mb-3">
+            <a asp-page="/Privacy" class="btn btn-primary">Insert</a>
+        </div>
+        <div>
+            <table class="display table table-striped table-bordered table-sm table-condensed">
+                <thead>
+                    <tr>
+                        <th class="text-center col-md-2">NO</th>
+                        <th class="text-left col-md-5">NAME</th>
+                        <th class="text-center col-md-3">DATE OF BIRTH</th>
+                        <th class="text-center col-md-2" colspan="2">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(int i=0; i<Model.view.Count(); i++)
+                    {
+                        <tr>
+                            <td class="text-center">@i++</td>
+                            <td class="text-left">@Model.view[i].Name</td>
+                            <td class="text-center">@Model.view[i].dateOfBirth</td>
+                            <form id="person" method="post">
+                                <td class="text-center">
+                                    <button class="btn btn-link" asp-page-handler="Update" asp-route-id="@Model.view[i].ID" type="submit"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-link" asp-page-handler="Delete" asp-route-id="@Model.view[i].ID" type="submit"><i class="fa fa-delete" aria-hidden="true"></i></button>
+                                </td>
+                            </form>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+     ```
 
 
+
+3. If you got an error, it is because we still didn't edit the code on controller. Open Index.cshtml.cs and paste this code :
+    
+     ```
+        using System;
+        using System.Collections.Generic;
+        using System.Linq;
+        using System.Threading.Tasks;
+        using Microsoft.AspNetCore.Mvc;
+        using Microsoft.AspNetCore.Mvc.RazorPages;
+        using Microsoft.Extensions.Logging;
+
+        using Microsoft.EntityFrameworkCore;
+        using RazorPage.Data;
+        using RazorPage.Models;
+
+
+        namespace RazorPage.Pages
+        {
+            public class IndexModel : PageModel
+            {
+                private readonly DefaultConnection _context;
+
+                public IndexModel(DefaultConnection context)
+                {
+                   _context = context;
+                }
+
+                public IList<Table_Razor_Page> view { get; set;}
+                public Table_Razor_Page delete { get; set;}
+
+                public async Task<ActionResult> OnGet()
+                {
+                    view = await _context.Table_Razor_Page.ToListAsync();
+
+                    if(view==null) 
+                    {
+                        view = new List<Table_Razor_Page>();
+                    }
+
+                    return Page();
+                }
+
+                public ActionResult OnPostEdit(int id)
+                {
+                    return RedirectToPage("/Manage",new {id = id} );
+                }
+
+                public async Task<ActionResult> OnPostDelete(int id)
+                {
+                    delete = await _context.Table_Razor_Page.FirstOrDefaultAsync(x=>x.ID==id);
+                    _context.Table_Razor_Page.Remove(delete);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToPage();
+                }
+            }
+        }
+
+     ```
+    
+
+4. You can see that all the errors gone. You can try run the web application first to see whether there is error or not. Click FN + F5 on your keyboard or just F5, depends on your keyboard.
+
+6. You can see that there are no rows on the table because we still didn't insert the data; table inside database is still empty.
