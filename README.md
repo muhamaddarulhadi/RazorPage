@@ -326,7 +326,6 @@
             }
 
             public IList<Table_Razor_Page> view { get; set;}
-            public Table_Razor_Page delete { get; set;}
 
             public async Task<ActionResult> OnGet()
             {
@@ -338,16 +337,6 @@
                 }
 
                 return Page();
-            }
-
-            public async Task<ActionResult> OnPostDelete(int id)
-            {
-                delete = await _context.Table_Razor_Page.FirstOrDefaultAsync(x=>x.ID==id);
-                _context.Table_Razor_Page.Remove(delete);
-
-                await _context.SaveChangesAsync();
-
-                return RedirectToPage();
             }
         }
     }
@@ -497,4 +486,167 @@
     > ![image](https://user-images.githubusercontent.com/47632993/146668163-b9bb84c2-9065-449d-a1f3-c3d502fed101.png)
   
 
-7. [Back to Menu](#simple-razorpage-project)
+6. [Back to Menu](#simple-razorpage-project)
+
+
+#### Update
+
+1. To create an update process, we gonna edit some code on Manage.cshtml and Manage.cshtml.cs because we already put a button on Index.cshtml such as this :
+
+    > ![image](https://user-images.githubusercontent.com/47632993/146668442-22051f3e-4959-4d2a-bfd4-3c91a94b6ec8.png)
+
+2. Open Manage.cshtml and edit the code like this :
+    
+    ```
+    @page "{handler?}/{id?}"
+    @model ManageModel
+    @{
+        ViewData["Title"] = "Manage";
+    }
+
+    <div class="text-center col-md-12">
+        <div mt-4> 
+            <h1 class="display-4">
+                @if(Model.IsNull==true)
+                {
+                    <span>Insert</span> 
+                }
+                else
+                {
+                    <span>Update</span>     
+                }
+                Data
+            </h1>
+        </div>
+        <div>
+            <form method="post">
+                <input asp-for="manage.ID" type="hidden"/>
+                <div class="row">
+                    <label asp-for="manage.Name" class="col-form-label">Name</label>
+                    <input asp-for="manage.Name" class="form-control"/>
+                    <span asp-validation-for="manage.Name" class="text-danger"></span>
+                </div>
+                <div class="row mt-3">
+                    <label asp-for="manage.dateOfBirth" class="col-form-label">Birth Date</label>
+                    @if(Model.IsNull==true)
+                    {
+                        <input asp-for="manage.dateOfBirth" class="form-control" type="date" value="@DateTime.Now.ToShortDateString()"/>
+                    }
+                    else
+                    {
+                        <input asp-for="manage.dateOfBirth" class="form-control" type="date" />
+                    }
+                    <span asp-validation-for="manage.dateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="row mt-3 ">
+                    <a asp-page="/Index" class="btn btn-primary mr-3">Back</a>
+                    @if(Model.IsNull==true)
+                    {
+                        <button asp-page-handler="Insert" type="submit" class="btn btn-success">Save</button>
+                    }
+                    else
+                    {
+                        <button asp-page-handler="Update" type="submit" class="btn btn-success">Update</button>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    ```
+
+3. After that, open Manage.cshtml.cs and edit the code like this :
+
+    ```
+    using System;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+
+    using Microsoft.EntityFrameworkCore;
+    using RazorPage.Data;
+    using RazorPage.Models;
+
+    namespace RazorPage.Pages
+    {
+        public class ManageModel : PageModel
+        {
+            private readonly DefaultConnection _context;
+            DateTime now = DateTime.Now;
+
+            public ManageModel(DefaultConnection context)
+            {
+               _context = context;
+            }
+
+            [BindProperty]
+            public Table_Razor_Page manage { get; set;}
+
+            public Table_Razor_Page update { get; set;}
+
+            public bool IsNull { get; set; }
+
+            public ActionResult OnGetInsert()
+            {
+                IsNull = true;
+                manage = new Table_Razor_Page();
+
+                return Page();
+            }
+
+            public async Task<ActionResult> OnGetUpdate(int? id)
+            {
+                if(id==null || id==0)
+                {
+                    return RedirectToPage("Index");
+                }
+                else if(id!=null && id!=0)
+                {
+                    IsNull = false;
+                    manage = await _context.Table_Razor_Page.FirstOrDefaultAsync(x=>x.ID==id);
+                }
+
+                return Page();
+            }
+
+            public async Task<ActionResult> OnPostInsert()
+            {
+                manage.dateTimeInsert = now;
+                manage.dateTimeUpdate = now;
+
+                await _context.Table_Razor_Page.AddAsync(manage);
+                await _context.SaveChangesAsync();
+
+                return RedirectToPage("Index");
+            }
+
+            public async Task<ActionResult> OnPostUpdate()
+            {
+                update = await _context.Table_Razor_Page.FirstOrDefaultAsync(x=>x.ID==manage.ID);
+                update.Name=manage.Name;
+                update.dateOfBirth=manage.dateOfBirth;
+                update.dateTimeUpdate = now; 
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToPage("Index");
+            }
+        }
+    }
+
+    ```
+4. Run your web app and click edit button on table.
+    
+    > ![Screenshot 2021-12-19 163123](https://user-images.githubusercontent.com/47632993/146668631-c41d6747-5400-4776-9a96-ee65a25d94ba.png)
+
+5. Manage page will be open and you can see that the title is change and button also change.
+
+    > ![image](https://user-images.githubusercontent.com/47632993/146668651-d11c9775-4fb4-43fb-b7cc-c9d1ffbf606a.png)
+
+6. Edit the data as you like and click update button.
+7. Web app will redirect to page Index and as you can see, the data changed.
+8. [Back to Menu](#simple-razorpage-project)
