@@ -691,4 +691,4 @@
     > ![image](https://user-images.githubusercontent.com/47632993/146669091-fb907269-437b-4076-a91b-049e3ef17009.png)
 
 4. As you can see the data that you delete already gone.
-5. 5. [Back to Menu](#simple-razorpage-project)
+5. [Back to Menu](#simple-razorpage-project)
