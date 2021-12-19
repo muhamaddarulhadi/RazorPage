@@ -650,3 +650,8 @@
 6. Edit the data as you like and click update button.
 7. Web app will redirect to page Index and as you can see, the data changed.
 8. [Back to Menu](#simple-razorpage-project)
+
+
+#### Delete
+
+1. 
