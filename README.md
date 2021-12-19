@@ -355,5 +355,14 @@
 
 #### Insert
 
+1. Create two new file name Manage.cshtml and Manage.cshtml.cs inside folder Pages.
+
+    > ![image](https://user-images.githubusercontent.com/47632993/146664578-37b2f611-4913-4001-8486-877bf496c3b0.png)
+
+3. Open Manage.cshtml and paste this code inside it :
+
+     ```
+     ```
+
 
 7. [Back to Menu](#simple-razorpage-project)
