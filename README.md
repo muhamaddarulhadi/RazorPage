@@ -7,7 +7,7 @@
 * To run RazorPage on VS Code, click FN + F5 or just F5 on your keyboard. It is depends on your keyboard.
 </BR>
 
-| No. | Title |
+| NO. | TITLE |
 | ----------- | ----------- |
 | 1 | [Before Create or Run a RazorPage project](#before-create-or-run-a-razorpage-project) |
 | 2 | [How to run RazorPage project](#how-to-run-razorpage-project) |
@@ -264,7 +264,7 @@
 ***
 
 ### [CRUD](https://www.sumologic.com/glossary/crud/#:~:text=CRUD%20Meaning%3A%20CRUD%20is%20an,%2C%20read%2C%20update%20and%20delete.) Code
-</BR>
+
 
 #### View
 
