@@ -2,6 +2,7 @@
 
 * This project is just a simple RazorPage web application that consist of CRUD process.
 * What is [RazorPage](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio)?
+* What is [CRUD](https://www.sumologic.com/glossary/crud/#:~:text=CRUD%20Meaning%3A%20CRUD%20is%20an,%2C%20read%2C%20update%20and%20delete.)?
 * What is [Entity](https://www.entityframeworktutorial.net/what-is-entityframework.aspx)?
 * What is [LINQ](https://www.tutorialsteacher.com/linq/what-is-linq)?
 * To run RazorPage on VS Code, click FN + F5 or just F5 on your keyboard. It is depends on your keyboard.
