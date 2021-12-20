@@ -66,9 +66,10 @@
    ``` 
    > ![image](https://user-images.githubusercontent.com/47632993/146669328-8036b74d-8c4f-4d94-a030-f4541527451f.png)
 
-3. System will open the project on your Code Editor
-4. Other than that, by using VS Code, you can just drag project folder on VS Code and and trust the author.         
-5. [Back to Menu](#simple-razorpage-project)
+3. "RazorPage" name on this command is the folder name of the project. The name is depends on you.
+4. System will open the project on your Code Editor.
+5. Other than that, by using VS Code, you can just drag project folder on VS Code and and trust the author.         
+6. [Back to Menu](#simple-razorpage-project)
 </BR>
 
 ***
@@ -81,7 +82,7 @@
 
         dotnet new webapp -o RazorPage
         
-4. "RazorPage" is the projects name.
+4. "RazorPage" is the projects name. The name is depends on you.
 5. After you finish create the project, you can type this commands on terminal to start code :
 
         code RazorPage
