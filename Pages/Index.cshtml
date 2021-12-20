@@ -1,0 +1,53 @@
+﻿@*CAN DECALARE ANY NAME ON @page BECAUSE THIS IS USED FOR TO HIDE VARIABLE NAME ON BROWSER URL*@
+@page "{handler?}/{id?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center col-md-12">
+    <h1 class="display-3 mt-3">Simple Razorpage Project</h1>
+    <p>This Project consist of Create, Read, Update and Delete process.</p>
+    
+    <div class="text-left mt-5 mb-4">
+        <a asp-page="Manage" asp-page-handler="Insert" class="btn btn-primary">Insert</a>
+    </div>
+    <div>
+        <table id="data" class="display table table-striped table-bordered table-sm table-condensed">
+            <thead>
+                <tr>
+                    <th class="text-center col-md-2">NO</th>
+                    <th class="text-left col-md-5">NAME</th>
+                    <th class="text-center col-md-3">BIRTH DATE</th>
+                    <th class="text-center col-md-2">ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(int i=0; i<Model.view.Count(); i++)                @*LOOP DATA FROM ENTITY view THAT WE GET THE DATA FROM CONTROLLER*@
+                {
+                    <tr>
+                        <td class="text-center"></td>
+                        <td class="text-left">@Model.view[i].Name</td>                                      @*CALL FIELD BY LOOP*@
+                        <td class="text-center">@Model.view[i].dateOfBirth.ToShortDateString()</td>          @*CALL FIELD BY LOOP*@
+                        <form id="person" method="post">
+                            <td class="text-center">
+                                <a class="btn btn-link" asp-page="Manage" asp-page-handler="Update" asp-route-id="@Model.view[i].ID"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                <button class="btn btn-link text-danger" asp-page-handler="Delete" asp-route-id="@Model.view[i].ID" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </td>
+                        </form>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/datatable.js"></script>        @*CALL datatable.js FROM JS FOLDER FOR TO MAKE TABLE WITH id="data" USE LIB DATATABLE*@
+}
+
+@*
+    asp-page            =   GO TO PAGE THAT WE INCLUDED
+    asp-page-handler    =   CALL METHOD NAME ON CONTROLLER
+    asp-route-id        =   YOU CAN PUT ANY NAME AFTER route- BECAUSE THIS WILL INCLUDE THE DATA ON YOUR BROWSER URL
+*@

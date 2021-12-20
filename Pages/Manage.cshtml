@@ -1,0 +1,64 @@
+@page "{handler?}/{id?}"
+@model ManageModel
+@{
+    ViewData["Title"] = "Manage";
+}
+
+<div class="text-center col-md-12">
+    <div mt-4> 
+        <h1 class="display-4">
+            @if(Model.IsNull==true)     @*CHECK WHETHER BOOLEAN IS TRUE OR FALSE*@
+            {
+                <span>Insert</span>     @*IF TRUE, SHOW THIS ON INTERFACE*@
+            }
+            else
+            {
+                <span>Update</span>     @*IF FALSE, SHOW THIS ON INTERFACE*@
+            }
+            Data
+        </h1>
+    </div>
+    <div>
+        <form method="post">
+            <input asp-for="manage.ID" type="hidden"/>                                  @*HIDDEN ID FROM INTERFACE*@
+            <div class="row">
+                <label asp-for="manage.Name" class="col-form-label">Name</label>
+                <input asp-for="manage.Name" class="form-control"/>
+                <span asp-validation-for="manage.Name" class="text-danger"></span>
+            </div>
+            <div class="row mt-3">
+                <label asp-for="manage.dateOfBirth" class="col-form-label">Birth Date</label>
+                @if(Model.IsNull==true)
+                {
+                    <input asp-for="manage.dateOfBirth" class="form-control" type="date" value="@DateTime.Now.ToShortDateString()"/>
+                }
+                else
+                {
+                    <input asp-for="manage.dateOfBirth" class="form-control" type="date" />
+                }
+                <span asp-validation-for="manage.dateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="row mt-3 ">
+                <a asp-page="/Index" class="btn btn-primary mr-3">Back</a>
+                @if(Model.IsNull==true)
+                {
+                    <button asp-page-handler="Insert" type="submit" class="btn btn-success">Save</button>
+                }
+                else
+                {
+                    <button asp-page-handler="Update" type="submit" class="btn btn-success">Update</button>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}      @*INCLUDE THIS FOR VALIDATION PURPOSE TO SHOW ERROR MESSAGE FROM ENTITY MODEL BY USING asp-validation-for*@
+}
+
+@*
+    asp-for                 =   FOR ENTITY FIELD THAT WE DECLARE ON CONTROLLER
+    asp-validation-for      =   SHOW VALIDATION MESSAGE FOR ENTITY FIELD THAT WE DECLARE ON CONTROLLER
+*@
