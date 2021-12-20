@@ -1,22 +1,25 @@
 ## Simple RazorPage Project
 
 * This project is just a simple RazorPage web application that consist of CRUD process.
-* [What is RazorPage?](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio)
-* What is [Entity](https://www.entityframeworktutorial.net/what-is-entityframework.aspx) ?
+* What is [RazorPage](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio)?
+* What is [Entity](https://www.entityframeworktutorial.net/what-is-entityframework.aspx)?
+* What is [LINQ](https://www.tutorialsteacher.com/linq/what-is-linq)?
 * To run RazorPage on VS Code, click FN + F5 or just F5 on your keyboard. It is depends on your keyboard.
+</BR>
 
-
-    | No. | Title |
-    | ----------- | ----------- |
-    | 1 | [Before Create or Run a RazorPage project](#before-create-or-run-a-razorpage-project) |
-    | 2 | [How to run RazorPage project](#how-to-run-razorpage-project) |
-    | 3 | [How to create RazorPage project](#how-to-create-razorpage-project) |
-    | 4 | [Create Database](#create-database) |
-    | 5 | [Setup DB connection on project](#setup-db-connection-on-project) |  
-    | 6 | [Insert Library](#insert-library) |
-    | 7 | [CRUD code](#crud-code) </br> - [View](#view) </br> - [Insert](#insert) </br> - [Update](#update) </br> - [Delete](#delete) |
+| No. | Title |
+| ----------- | ----------- |
+| 1 | [Before Create or Run a RazorPage project](#before-create-or-run-a-razorpage-project) |
+| 2 | [How to run RazorPage project](#how-to-run-razorpage-project) |
+| 3 | [How to create RazorPage project](#how-to-create-razorpage-project) |
+| 4 | [Create Database](#create-database) |
+| 5 | [Setup DB connection on project](#setup-db-connection-on-project) |  
+| 6 | [Insert Library](#insert-library) |
+| 7 | [CRUD code](#crud-code) </br> - [View](#view) </br> - [Insert](#insert) </br> - [Update](#update) </br> - [Delete](#delete) |
+</BR>
 
 ***
+
 #### Before Create or Run a RazorPage project
 
 1. Install .Net 5.0 sdk first. For this project, we use .Net 5.0. Below is the link for you to download .Net 5.0 :
@@ -46,9 +49,10 @@
     
 5. After you finish setup everything. Now you are ready to proceed to create your first RazorPge project or run this project :grin:
 6. [Back to Menu](#simple-razorpage-project)
-
+</BR>
 
 ***
+
 #### How to run RazorPage project
 
 1. Download this project and open your terminal or VS Code.
@@ -64,21 +68,22 @@
 3. System will open the project on your Code Editor
 4. Other than that, by using VS Code, you can just drag project folder on VS Code and and trust the author.         
 5. [Back to Menu](#simple-razorpage-project)
-
+</BR>
 
 ***
+
 #### How to create RazorPage project
 
 1. Open your install VS Code and open VS Code terminal or any terminal that you have.
 2. Change to the directory (cd) which will contain the project.
 3. Run the following commands :
 
-        dotnet new webapp -o RazorPages
+        dotnet new webapp -o RazorPage
         
-4. "RazorPages" is the projects name.
+4. "RazorPage" is the projects name.
 5. After you finish create the project, you can type this commands on terminal to start code :
 
-        code RazorPages
+        code RazorPage
 
 6. After VS Code appear, it will show like this on VS Code.
 
@@ -105,9 +110,10 @@
     > ![image](https://user-images.githubusercontent.com/47632993/146312151-8864070a-1417-4e22-ad4d-0a66fcd505b2.png)
 
 12. [Back to Menu](#simple-razorpage-project)
-
+</BR>
 
 ***
+
 #### Create Database
 
 1. Before we start to code, you need to create a database (DB).
@@ -123,9 +129,10 @@
    > ![image](https://user-images.githubusercontent.com/47632993/146318517-e4625ddf-18c9-417b-bd4b-5e239f46109d.png)
 
 7. [Back to Menu](#simple-razorpage-project)
-
+</BR>
 
 ***
+
 #### Setup DB connection on project
 
 1. On your project, open appsettings.json file and insert this :
@@ -216,11 +223,11 @@
       > ![image](https://user-images.githubusercontent.com/47632993/146323705-8f9a2349-c67e-4cda-bd2d-9b3543aba284.png)
 
 10. [Back to Menu](#simple-razorpage-project)
-
+</BR>
 
 ***
-#### Insert Library
 
+#### Insert Library
 
 1. Before we start to code, we need to download library called [Datatable](https://datatables.net/download/), just use default setting when download Datatable. Other than that, we need to download library called [FontAwesome](https://fontawesome.com/v4.7/get-started/).
 
@@ -252,12 +259,12 @@
     > ![image](https://user-images.githubusercontent.com/47632993/146662388-b66cc6a4-0757-45d4-90c1-efd33cd24029.png)
 
 5. [Back to Menu](#simple-razorpage-project)
-
-
+</BR>
 
 ***
-### [CRUD](https://www.sumologic.com/glossary/crud/#:~:text=CRUD%20Meaning%3A%20CRUD%20is%20an,%2C%20read%2C%20update%20and%20delete.) Code
 
+### [CRUD](https://www.sumologic.com/glossary/crud/#:~:text=CRUD%20Meaning%3A%20CRUD%20is%20an,%2C%20read%2C%20update%20and%20delete.) Code
+</BR>
 
 #### View
 
@@ -394,7 +401,7 @@
     > ![image](https://user-images.githubusercontent.com/47632993/146668100-a4aefe6b-cbad-497a-92f3-b211497d2e14.png)
 
 8. [Back to Menu](#simple-razorpage-project)
-
+</BR>
 
 #### Insert
 
@@ -500,7 +507,7 @@
   
 
 6. [Back to Menu](#simple-razorpage-project)
-
+</BR>
 
 #### Update
 
@@ -663,7 +670,7 @@
 6. Edit the data as you like and click update button.
 7. Web app will redirect to page Index and as you can see, the data changed.
 8. [Back to Menu](#simple-razorpage-project)
-
+</BR>
 
 #### Delete
 
