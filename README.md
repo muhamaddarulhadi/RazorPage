@@ -179,7 +179,7 @@
     ```
     
 5. If you see error with red lines, don't worry, it is just because we didn't finish create some file that will be use by DefaultConnection.cs
-6. Create a new folder name Models and create a new file inside it call Table_Razor_Page.cs .This is an Entity Class that we wil use on our project.
+6. Create a new folder name Models and create a new file inside it call Table_Razor_Page.cs .This is an Entity Class that we wil use on our project. You can name this file anything that you want because we just gonna callback the class name inside this file. It is not required to create the file name similar with class name because inside this file, we can include a lot of class and we can callback many class inside this file at similar times.
     
    > ![image](https://user-images.githubusercontent.com/47632993/146319343-044045bf-e757-455c-8ebc-a6a9b0a6ef89.png)
 
