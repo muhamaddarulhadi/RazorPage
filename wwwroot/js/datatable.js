@@ -13,7 +13,7 @@ $(document).ready(function()
     ],
     });
 
-
+    /*SET NUMBERING ON FIRST COLUMN*/
     t.on( 'order.dt search.dt', function () {
         t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
