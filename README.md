@@ -46,7 +46,6 @@
     - [Visual Studio Code (VS Code)](https://code.visualstudio.com/)
     
       > ![image](https://user-images.githubusercontent.com/47632993/146308637-3c447b02-0834-4ed3-83aa-a6e0effc4d66.png)
-
     
 5. After you finish setup everything. Now you are ready to proceed to create your first RazorPge project or run this project :grin:
 6. [Back to Menu](#simple-razorpage-project)
