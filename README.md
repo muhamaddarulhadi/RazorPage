@@ -61,7 +61,7 @@
    
    > ![image](https://user-images.githubusercontent.com/47632993/146669384-e9b4b021-077d-4de5-acc3-e8aced9863b2.png)
     
-   ``` 
+   ```console 
    code -r RazorPage
    ``` 
    > ![image](https://user-images.githubusercontent.com/47632993/146669328-8036b74d-8c4f-4d94-a030-f4541527451f.png)
@@ -79,21 +79,27 @@
 1. Open your install VS Code and open VS Code terminal or any terminal that you have.
 2. Change to the directory (cd) which will contain the project.
 3. Run the following commands :
-
-        dotnet new webapp -o RazorPage
-        
+   
+   ```console 
+   dotnet new webapp -o RazorPage
+   ```
+   
 4. "RazorPage" is the projects name. The name is depends on you.
 5. After you finish create the project, you can type this commands on terminal to start code :
 
-        code RazorPage
-
+   ```console 
+   code RazorPage
+   ```
+   
 6. After VS Code appear, it will show like this on VS Code.
 
     > ![image](https://user-images.githubusercontent.com/47632993/146310939-9ea72afe-e09c-4e71-a703-8d22cf3d3f8c.png)
 
 7. You need to trust the HTTPS development certificate by running the following command :
 
-        dotnet dev-certs https --trust
+   ```console 
+   dotnet dev-certs https --trust
+   ```     
         
 8. The preceding command doesn't work on Linux. See your Linux distribution's documentation for trusting a certificate. The preceding command displays the following dialog, provided the certificate was not previously trusted :
 
@@ -102,8 +108,10 @@
 9. Select Yes if you agree to trust the development certificate.
 10. For this project we gonna use 2 package that we need to install. On your terminal inside VS Code, you need to type this commands and click enter :
         
-        dotnet add package Microsoft.EntityFrameworkCore.Tools --version 5.0.9
-        dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.9
+    ```console 
+    dotnet add package Microsoft.EntityFrameworkCore.Tools --version 5.0.9
+    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.9
+    ```
         
     > ![image](https://user-images.githubusercontent.com/47632993/146311793-ba7193b2-ce9a-4959-b1d6-2a2d0dcd6cd0.png)
 
@@ -139,11 +147,11 @@
 
 1. On your project, open appsettings.json file and insert this :
 
-    ```        
-    "ConnectionStrings": {
-        "DefaultConnection": "Server=YOUR_SERVER_NAME; Database=YOUR_DB_NAME; Trusted_Connection=True; MultipleActiveResultSets=True;"
-      }
-    ```    
+   ```JSON        
+   "ConnectionStrings": {
+       "DefaultConnection": "Server=YOUR_SERVER_NAME; Database=YOUR_DB_NAME; Trusted_Connection=True; MultipleActiveResultSets=True;"
+    }
+   ```    
     
    > ![image](https://user-images.githubusercontent.com/47632993/146317175-83c4535e-9228-401d-9fcc-46416b9cc2f9.png)
 
@@ -154,29 +162,29 @@
 
 4. Open DefaultConnection.cs and insert this code :
     
-    ```
-    using Microsoft.EntityFrameworkCore;
-    using RazorPage.Models;
+   ```C#
+   using Microsoft.EntityFrameworkCore;
+   using RazorPage.Models;
 
-    namespace RazorPage.Data
-    {
-        public class DefaultConnection : DbContext
-        {
-            public DefaultConnection (
+   namespace RazorPage.Data
+   {
+       public class DefaultConnection : DbContext
+       {
+           public DefaultConnection (
                 DbContextOptions<DefaultConnection> options)
                 : base(options)
-            {
-            }
+           {
+           }
 
-            public DbSet<Table_Razor_Page> Table_Razor_Page { get; set; }
+           public DbSet<Table_Razor_Page> Table_Razor_Page { get; set; }
 
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
-            {
+           protected override void OnModelCreating(ModelBuilder modelBuilder)
+           {
                 modelBuilder.Entity<Table_Razor_Page>().ToTable("Table_Razor_Page");
-            }
-        }
-    }
-    ```
+           }
+       }
+   }
+   ```
     
 5. If you see error with red lines, don't worry, it is just because we didn't finish create some file that will be use by DefaultConnection.cs
 6. Create a new folder name Models and create a new file inside it call Table_Razor_Page.cs .This is an Entity Class that we wil use on our project. You can name this file anything that you want because we just gonna callback the class name inside this file. It is not required to create the file name similar with class name because inside this file, we can include a lot of class and we can callback many class inside this file at similar times.
@@ -185,14 +193,14 @@
 
 7. Open Table_Razor_Page.cs and insert this code and you will see the error on DefaultConnection.cs will be gone :
 
-    ```
-    using System;
-    using System.ComponentModel.DataAnnotations;
+   ```C#
+   using System;
+   using System.ComponentModel.DataAnnotations;
 
-    namespace RazorPage.Models
-    {
-        public class Table_Razor_Page
-        {
+   namespace RazorPage.Models
+   {
+       public class Table_Razor_Page
+       {
             [Key]
             public int ID { get; set; }
 
@@ -206,23 +214,27 @@
             public DateTime dateTimeInsert { get; set; }
 
             public DateTime dateTimeUpdate { get; set; }
-        }
-    }
-    ```
+       }
+   }
+   ```
 
 8. After that, open Startup.cs and insert this code above namespace
 
-       using Microsoft.EntityFrameworkCore;
-       using RazorPage.Data;
+   ```C#
+   using Microsoft.EntityFrameworkCore;
+   using RazorPage.Data;
+   ```
         
-      > ![image](https://user-images.githubusercontent.com/47632993/146323512-5e45b7ff-b42c-40f5-8726-24490c6d7b60.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146323512-5e45b7ff-b42c-40f5-8726-24490c6d7b60.png)
 
 9. Then, insert this code as follows :
         
-       services.AddDbContext<DefaultConnection>(options =>
+    ```C#    
+    services.AddDbContext<DefaultConnection>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+    ```
       
-      > ![image](https://user-images.githubusercontent.com/47632993/146323705-8f9a2349-c67e-4cda-bd2d-9b3543aba284.png)
+    > ![image](https://user-images.githubusercontent.com/47632993/146323705-8f9a2349-c67e-4cda-bd2d-9b3543aba284.png)
 
 10. [Back to Menu](#simple-razorpage-project)
 </BR>
@@ -233,17 +245,20 @@
 
 1. Before we start to code, we need to download library called [Datatable](https://datatables.net/download/), just use default setting when download Datatable. Other than that, we need to download library called [FontAwesome](https://fontawesome.com/v4.7/get-started/).
 
-    > What is [Datatable](https://datatables.net/)?
+   > What is [Datatable](https://datatables.net/)?
 
-    > What is [FontAwesome](https://fontawesome.com/v4.7/)?
+   > What is [FontAwesome](https://fontawesome.com/v4.7/)?
 
 2. Insert the Datatable library and FontAwesome inside folder lib on wwwroot folder.
+   
    > ![image](https://user-images.githubusercontent.com/47632993/146663424-e2b4257e-0943-4ee4-8d0d-0519adc045d1.png)
 
 3. After that insert this code 
     
-       <link rel="stylesheet" type="text/css" href="~/lib/DataTables/datatables.min.css"/>
-       <link rel="stylesheet" type="text/css" href="~/lib/font-awesome-4.7.0/css/font-awesome.min.css" />    
+   ```HTML+Razor 
+   <link rel="stylesheet" type="text/css" href="~/lib/DataTables/datatables.min.css"/>
+   <link rel="stylesheet" type="text/css" href="~/lib/font-awesome-4.7.0/css/font-awesome.min.css" />   
+   ```
        
    inside _Layout.cshtml on
    
@@ -253,12 +268,14 @@
 
 
 4. Then, we need to insert this code
-    
-        <script src="~/lib/DataTables/datatables.min.js"></script>
+   
+   ```HTML+Razor 
+   <script src="~/lib/DataTables/datatables.min.js"></script>
+   ``` 
 
-    inside  _Layout.cshtml on
+   inside  _Layout.cshtml on
     
-    > ![image](https://user-images.githubusercontent.com/47632993/146662388-b66cc6a4-0757-45d4-90c1-efd33cd24029.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146662388-b66cc6a4-0757-45d4-90c1-efd33cd24029.png)
 
 5. [Back to Menu](#simple-razorpage-project)
 </BR>
@@ -273,14 +290,14 @@
 1. For this project, we gonna use page Index to show one table that consist all data from database table that we have created.
 2. Open file Index.cshtml and paste this code (remove old code first) :
     
-     ```
-    @page "{handler?}/{id?}"
-    @model IndexModel
-    @{
-        ViewData["Title"] = "Home page";
-    }
+   ```HTML+Razor 
+   @page "{handler?}/{id?}"
+   @model IndexModel
+   @{
+       ViewData["Title"] = "Home page";
+   }
 
-    <div class="text-center col-md-12">
+   <div class="text-center col-md-12">
         <h1 class="display-3 mt-3">Simple Razorpage Project</h1>
         <p>This Project consist of Create, Read, Update and Delete process.</p>
 
@@ -315,29 +332,29 @@
                 </tbody>
             </table>
         </div>
-    </div>
+   </div>
 
-    @section Scripts {
+   @section Scripts {
         <script src="~/js/datatable.js"></script>
-    }
-     ```
+   }
+   ```
 
 
 
 3. If you got an error, it is because we still didn't edit the code on controller. Open Index.cshtml.cs and paste this code :
     
-    ```
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
+   ```C#
+   using System.Collections.Generic;
+   using System.Threading.Tasks;
+   using Microsoft.AspNetCore.Mvc;
+   using Microsoft.AspNetCore.Mvc.RazorPages;
 
-    using Microsoft.EntityFrameworkCore;
-    using RazorPage.Data;
-    using RazorPage.Models;
+   using Microsoft.EntityFrameworkCore;
+   using RazorPage.Data;
+   using RazorPage.Models;
 
-    namespace RazorPage.Pages
-    {
+   namespace RazorPage.Pages
+   {
         public class IndexModel : PageModel
         {
             private readonly DefaultConnection _context;
@@ -361,19 +378,19 @@
                 return Page();
             }
         }
-    }
-    ```
+   }
+   ```
 
 4. You can see that all the errors are gone.
 5. After that, create one file inside js folder and name it datatable.js
 
-    > ![image](https://user-images.githubusercontent.com/47632993/146667756-5c02709e-e6fe-4819-a61b-ad2b3a576866.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146667756-5c02709e-e6fe-4819-a61b-ad2b3a576866.png)
 
 6. Copy and paste this code inside datatable.js
     
-    ```
-    $(document).ready(function()
-    {
+   ```JavaScript
+   $(document).ready(function()
+   {
         var t = $('#data').DataTable({
             pageLength: 5,
             "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "SEMUA"]],
@@ -393,14 +410,14 @@
                 cell.innerHTML = i+1;
             } );
         }).draw(); 
-    });
-    ```
+   });
+   ```
 
 7. You can try run the web application first to see whether there is error or not. Click FN + F5 on your keyboard or just F5, depends on your keyboard.
 
 6. You can see that there are no rows on the table because we still didn't insert the data; table inside database is still empty.
     
-    > ![image](https://user-images.githubusercontent.com/47632993/146668100-a4aefe6b-cbad-497a-92f3-b211497d2e14.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146668100-a4aefe6b-cbad-497a-92f3-b211497d2e14.png)
 
 8. [Back to Menu](#simple-razorpage-project)
 </BR>
@@ -409,18 +426,18 @@
 
 1. Create two new file name Manage.cshtml and Manage.cshtml.cs inside folder Pages.
 
-    > ![image](https://user-images.githubusercontent.com/47632993/146664578-37b2f611-4913-4001-8486-877bf496c3b0.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146664578-37b2f611-4913-4001-8486-877bf496c3b0.png)
 
 3. Open Manage.cshtml and paste this code inside it :
 
-    ```
-    @page
-    @model ManageModel
-    @{
+   ```HTML+Razor 
+   @page
+   @model ManageModel
+   @{
         ViewData["Title"] = "Manage";
-    }
+   }
 
-    <div class="text-center col-md-12">
+   <div class="text-center col-md-12">
         <div mt-4> 
             <h1 class="display-4">
                  Insert Data
@@ -444,29 +461,27 @@
                 </div>
             </form>
         </div>
-    </div>
-
-
-    @section Scripts {
+   </div>
+   
+   @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
-
-    ```
+   }
+   ```
 
 4. Then, open Manage.cshtml.cs and paste this code :
     
-    ```
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
+   ```C#
+   using System;
+   using System.Threading.Tasks;
+   using Microsoft.AspNetCore.Mvc;
+   using Microsoft.AspNetCore.Mvc.RazorPages;
 
-    using Microsoft.EntityFrameworkCore;
-    using RazorPage.Data;
-    using RazorPage.Models;
+   using Microsoft.EntityFrameworkCore;
+   using RazorPage.Data;
+   using RazorPage.Models;
 
-    namespace RazorPage.Pages
-    {
+   namespace RazorPage.Pages
+   {
         public class ManageModel : PageModel
         {
             private readonly DefaultConnection _context;
@@ -498,16 +513,15 @@
                 return RedirectToPage("Index");
             }
         }
-    }
-
-    ```
+   }
+   ```
+   
 5. Run the web application and try insert data and click save. When you finish insert data, you will see the data that you insert on page Index.cshtml.
     
-    > ![image](https://user-images.githubusercontent.com/47632993/146668135-fb7ea215-4f42-49f6-87cf-96c0f8521c8d.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146668135-fb7ea215-4f42-49f6-87cf-96c0f8521c8d.png)
     
-    > ![image](https://user-images.githubusercontent.com/47632993/146668163-b9bb84c2-9065-449d-a1f3-c3d502fed101.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146668163-b9bb84c2-9065-449d-a1f3-c3d502fed101.png)
   
-
 6. [Back to Menu](#simple-razorpage-project)
 </BR>
 
@@ -515,18 +529,18 @@
 
 1. To create an update process, we gonna edit some code on Manage.cshtml and Manage.cshtml.cs because we already put a button on Index.cshtml such as this :
 
-    > ![image](https://user-images.githubusercontent.com/47632993/146668442-22051f3e-4959-4d2a-bfd4-3c91a94b6ec8.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146668442-22051f3e-4959-4d2a-bfd4-3c91a94b6ec8.png)
 
 2. Open Manage.cshtml and edit the code like this :
     
-    ```
-    @page "{handler?}/{id?}"
-    @model ManageModel
-    @{
+   ```HTML+Razor 
+   @page "{handler?}/{id?}"
+   @model ManageModel
+   @{
         ViewData["Title"] = "Manage";
-    }
+   }
 
-    <div class="text-center col-md-12">
+   <div class="text-center col-md-12">
         <div mt-4> 
             <h1 class="display-4">
                 @if(Model.IsNull==true)
@@ -573,28 +587,27 @@
                 </div>
             </form>
         </div>
-    </div>
+   </div>
 
-
-    @section Scripts {
+   @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
-    ```
+   }
+   ```
 
 3. After that, open Manage.cshtml.cs and edit the code like this :
 
-    ```
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
+   ```C#
+   using System;
+   using System.Threading.Tasks;
+   using Microsoft.AspNetCore.Mvc;
+   using Microsoft.AspNetCore.Mvc.RazorPages;
 
-    using Microsoft.EntityFrameworkCore;
-    using RazorPage.Data;
-    using RazorPage.Models;
+   using Microsoft.EntityFrameworkCore;
+   using RazorPage.Data;
+   using RazorPage.Models;
 
-    namespace RazorPage.Pages
-    {
+   namespace RazorPage.Pages
+   {
         public class ManageModel : PageModel
         {
             private readonly DefaultConnection _context;
@@ -658,16 +671,16 @@
                 return RedirectToPage("Index");
             }
         }
-    }
-
-    ```
+   }
+   ```
+    
 4. Run your web app and click edit button on table.
     
-    > ![Screenshot 2021-12-19 163123](https://user-images.githubusercontent.com/47632993/146668631-c41d6747-5400-4776-9a96-ee65a25d94ba.png)
+   > ![Screenshot 2021-12-19 163123](https://user-images.githubusercontent.com/47632993/146668631-c41d6747-5400-4776-9a96-ee65a25d94ba.png)
 
 5. Manage page will be open and you can see that the title is change and button also change.
 
-    > ![image](https://user-images.githubusercontent.com/47632993/146668651-d11c9775-4fb4-43fb-b7cc-c9d1ffbf606a.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146668651-d11c9775-4fb4-43fb-b7cc-c9d1ffbf606a.png)
 
 6. Edit the data as you like and click update button.
 7. Web app will redirect to page Index and as you can see, the data changed.
@@ -678,34 +691,35 @@
 
 1. For this process we gonna edit the code inside Index.cshtml.cs. It is because we already include the code on Index.cshtml such as below :
 
-    > ![image](https://user-images.githubusercontent.com/47632993/146669030-9632709d-1ade-4616-960b-89b887da31a7.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146669030-9632709d-1ade-4616-960b-89b887da31a7.png)
 
 2. Open Index.cshtml.cs and paste this code :
 
-    > ![image](https://user-images.githubusercontent.com/47632993/146669524-066253da-d718-4eda-9495-7c74d1e3d4ac.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146669524-066253da-d718-4eda-9495-7c74d1e3d4ac.png)
     
-    ```
-    public Table_Razor_Page delete { get; set;}
-    ```
+   ```C#
+   public Table_Razor_Page delete { get; set;}
+   ```
 
 3. Paste this code below OnGet method.
     
-    >![image](https://user-images.githubusercontent.com/47632993/146669052-7ccb0b0c-0837-4b78-853a-4defdbb78dd2.png)
+   >![image](https://user-images.githubusercontent.com/47632993/146669052-7ccb0b0c-0837-4b78-853a-4defdbb78dd2.png)
 
-    ```
-    public async Task<ActionResult> OnPostDelete(int id)
-    {
+   ```C#
+   public async Task<ActionResult> OnPostDelete(int id)
+   {
         delete = await _context.Table_Razor_Page.FirstOrDefaultAsync(x=>x.ID==id);
         _context.Table_Razor_Page.Remove(delete);
 
         await _context.SaveChangesAsync();
 
         return RedirectToPage();
-    }
-    ```
+   }
+   ```
+   
 4. Run your application and try delete the data that you already insert before by clicking the delete button on the table.
     
-    > ![image](https://user-images.githubusercontent.com/47632993/146669091-fb907269-437b-4076-a91b-049e3ef17009.png)
+   > ![image](https://user-images.githubusercontent.com/47632993/146669091-fb907269-437b-4076-a91b-049e3ef17009.png)
 
 5. As you can see the data that you delete already gone.
 6. [Back to Menu](#simple-razorpage-project)
