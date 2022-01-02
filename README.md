@@ -67,8 +67,9 @@
 
 3. "RazorPage" name on this command is the folder name of the project. The name is depends on you.
 4. System will open the project on your Code Editor.
-5. Other than that, by using VS Code, you can just drag project folder on VS Code and and trust the author.         
-6. [Back to Menu](#simple-razorpage-project)
+5. Other than that, by using VS Code, you can just drag project folder on VS Code and and trust the author.     
+6. If VS Code authorize you to insert some assets, just click ***Yes/Accept***    
+7. [Back to Menu](#simple-razorpage-project)
 </BR>
 
 ***
