@@ -46,9 +46,13 @@
     - [Visual Studio Code (VS Code)](https://code.visualstudio.com/)
     
       > ![image](https://user-images.githubusercontent.com/47632993/146308637-3c447b02-0834-4ed3-83aa-a6e0effc4d66.png)
+
+5. Then, install [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) Extension for Visual Studio Code
     
-5. After you finish setup everything. Now you are ready to proceed to create your first RazorPge project or run this project :grin:
-6. [Back to Menu](#simple-razorpage-project)
+      > ![image](https://user-images.githubusercontent.com/47632993/169224354-d0b7336c-24e0-4996-b4fc-f214cc400ff4.png)
+
+6. After you finish setup everything. Now you are ready to proceed to create your first RazorPge project or run this project :grin:
+7. [Back to Menu](#simple-razorpage-project)
 </BR>
 
 ***
