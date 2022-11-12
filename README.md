@@ -149,7 +149,7 @@
 
 #### Setup DB connection on project
 
-1. On your project, open appsettings.json file and insert this ***(If your server name have slash " \ " , you need to insert double slash like this " \\ " )***:
+1. On your project, open appsettings.json file and insert this ***(If your server name have slash " \ " , you need to insert double slash like this  " \\ " )***:
 
    ```JSON        
    "ConnectionStrings": {
